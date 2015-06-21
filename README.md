@@ -1,5 +1,5 @@
-Line 1
+Information Regarding Repository
 
-Line 2
+About:
+This Repository is used for git learning and testing git commands. There are no projects in this repository.
 
-Line 3
