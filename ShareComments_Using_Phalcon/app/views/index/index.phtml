@@ -1,0 +1,19 @@
+<h1>Hello World!</h1>
+
+<fieldset>
+<legend >Post Your comments</legend>
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <input type="text" id="box" name="box" />
+    <button>Post comments</button>
+    <p id="outputMessage"></p>
+    <?php
+        $comment = $_POST["box"];
+
+        if($comment != "")
+        {
+            echo "<br />".$comment;
+        }
+    ?>
+
+</form>
+</fieldset>
