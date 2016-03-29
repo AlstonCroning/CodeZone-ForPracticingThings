@@ -4,12 +4,22 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>End Points Practice 1</title>
+    <title>Happy Practicing</title>
     <link rel="stylesheet" href="Styles.css">
 </head>
 
 <body>
+    <p id="message"></p>
 
+    <form method="post" action="BackendPHP.php">
+    User's Name:<br />
+    <input type="text" name="username" autofocus/><br />
+    Comment Here<br />
+    <textarea id="inputComment" name="inputComment1" cols="30" rows="2" ></textarea><br/>
+    <textarea id="displayComment" name="displayComment1" cols="50" rows="10" disabled ></textarea><br />
+
+        <button type="submit" id="btn">Submit</button>
+    </form>
 
     <script src="JavaScript.js"></script>
 </body>
