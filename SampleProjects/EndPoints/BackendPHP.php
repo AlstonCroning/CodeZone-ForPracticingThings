@@ -25,7 +25,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         $query = "SELECT * FROM `users` WHERE `name`='$username'";
         if ($result = mysqli_query($link, $query)) {
             while ($rows = mysqli_fetch_array($result)) {
-                print_r($rows);//prints the data
+                $myarray = [$rows['comments']];
+                $jsonCode = json_encode($myarray);
+                echo $jsonCode;
             }
         }
     }
