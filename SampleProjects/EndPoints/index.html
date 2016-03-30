@@ -9,19 +9,19 @@
 </head>
 
 <body>
-    <p id="message"></p>
 
-    <form method="post" action="BackendPHP.php">
+<form method="post" action="BackendPHP.php">
     User's Name:<br />
-    <input type="text" name="username" autofocus/><br />
+    <input type="text" id="username" name="username1"  autofocus/><br />
     Comment Here<br />
-    <textarea id="inputComment" name="inputComment1" cols="30" rows="2" ></textarea><br/>
+    <textarea id="inputComment" name="inputComment" cols="30" rows="2" ></textarea><br/>
     <textarea id="displayComment" name="displayComment1" cols="50" rows="10" disabled ></textarea><br />
+    <button type="button" id="btn">Submit</button>
+</form>
 
-        <button type="submit" id="btn">Submit</button>
-    </form>
+<p id="message"></p>
 
-    <script src="JavaScript.js"></script>
+<script src="JavaScript.js"></script>
 </body>
 
 </html>
