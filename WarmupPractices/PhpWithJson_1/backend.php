@@ -11,10 +11,18 @@ $lastName = $_POST['lname'];
 
 
     $output = "[";
+    $output .= '{"firstName":"'.$firstName.'",';
+    $output .= '"lastName":"'.$lastName.'"}';
+    $output .= "]";
+    echo $output;
+
+
+/*
+    $output = "[";
     $output .= '{"firstName":"'.$firstName.'"},';
     $output .= '{"lastName":"'.$lastName.'"}';
     $output .= "]";
-    echo $output;
+    echo $output;*/
 
     //$output .= '{"Name": "Dishan"}';
 
@@ -31,8 +39,4 @@ $lastName = $_POST['lname'];
     $output .= "]";
     echo $output;
 */
-
-
-
-
 }

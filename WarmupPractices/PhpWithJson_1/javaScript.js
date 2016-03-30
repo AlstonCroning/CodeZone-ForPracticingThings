@@ -20,19 +20,28 @@ function loadDoc() {
 
         }
     };
+
+    var dataToSend = {"firstName": firstName.value, "lastName": lastName.value};
+    var dataAsString = JSON.stringify(dataToSend);
     xhttp.open("POST","backend.php",true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("fname="+firstName.value+"&lname="+lastName.value);
 }
 
-function myFunction(response) {
+function myFunction(arr) {
     var out = "";
     var _firstName = "";
     var _lastName = "";
-    for(i=0; i < response.length; i++) {
-        _firstName += response[i].firstName;
-        _lastName += response[i].lastName;
-        //out += "First Name: " + response[i].firstName;
+    for(var i=0; i < arr.length; i++) {
+        _firstName = arr[i].firstName;
+        _lastName = arr[i].lastName;
+        output.innerHTML += "<br/>First Name: " + _firstName + "<br/>Last Name: " + _lastName;
     }
-    output.innerHTML = "First Name: " + _firstName + "<br/>Last Name: " + _lastName;
+    //arr.forEach(element => {
+    //    output.innerHTML += "<br/>First Name: " + element.firstName + "<br/>Last Name: " + element.lastName;
+    //});
+
+    //arr.forEach(function (element) {
+    //    output.innerHTML += "<br/>First Name: " + element.firstName + "<br/>Last Name: " + element.lastName;
+    //})
 }
