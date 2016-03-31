@@ -17,8 +17,10 @@ function loadDoc() {
             //msg.innerHTML = stringyfy;
 
             //var response = xhttp.responseText;
-            //var validResponse = JSON.parse(response);
+            //var strippedWhitespaces = response.replace(/ /g,'');
+            //var validResponse = JSON.parse(strippedWhitespaces);
             //console.log(validResponse['error']);
+            //msg.innerHTML += validResponse;
             //myFunction(validResponse);
         }
     };
