@@ -24,9 +24,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         //selecting data from the database
         $query = "SELECT * FROM `users` WHERE `name`='$username'";
         if ($result = mysqli_query($link, $query)) {
-            while ($rows = mysqli_fetch_array($result)) {
-                $jsonCode = json_encode($rows);
-                echo $jsonCode;
+            while ($row = mysqli_fetch_assoc($result)) {
+
+                //sending response
+                echo json_encode($row);
             }
         }
     }

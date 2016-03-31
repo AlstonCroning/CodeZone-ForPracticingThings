@@ -2,7 +2,7 @@
 var button = document.getElementById("btn");
 var userName = document.getElementById("username");
 var userComment = document.getElementById("inputComment");
-var msg = document.getElementById("message");
+var msgTextArea = document.getElementById("displayComment");
 
 //event
 button.addEventListener("click",loadDoc);
@@ -12,16 +12,10 @@ function loadDoc() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if(xhttp.readyState == 4 && xhttp.status == 200) {
-            msg.innerHTML = xhttp.responseText;
-            //var stringyfy = JSON.stringify(xhttp.responseText);
-            //msg.innerHTML = stringyfy;
-
-            //var response = xhttp.responseText;
-            //var strippedWhitespaces = response.replace(/ /g,'');
-            //var validResponse = JSON.parse(strippedWhitespaces);
-            //console.log(validResponse['error']);
-            //msg.innerHTML += validResponse;
-            //myFunction(validResponse);
+            var stringyfy = JSON.stringify(xhttp.responseText);
+            var validResponse = JSON.parse(stringyfy);
+            myFunction(validResponse);
+            //var strippedWhitespaces = stringyfy.replace(/ /g,'');
         }
     };
     xhttp.open("POST","BackendPHP.php",true);
@@ -29,26 +23,12 @@ function loadDoc() {
     xhttp.send("username="+userName.value+"&inputComment="+userComment.value);
 }
 
-function IsValidJSON(test) {
-    try {
-        var obj = JSON.parse(test);
-        if (obj && typeof obj === "object" && obj !== null) {
-            return true;
-        }
-    } catch (e) {
-        msg.innerHTML += "Error";
-    }
-    return false;
-}
-
-
 function myFunction(arr) {
     var out = "";
-    var _userName = "";
-    var _userComment = "";
     for(var i=0; i < arr.length; i++) {
-        _userName = arr[i].name;
-        _userComment = arr[i].comments;
-        msg.innerHTML += "<br/>User Name: " + _userName + "<br/>Comment: " + _userComment;
+        out = arr[i];
+        //msg.innerHTML += out;
+        msgTextArea.innerHTML += out;
     }
+
 }
