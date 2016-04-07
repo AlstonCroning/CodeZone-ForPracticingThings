@@ -1,7 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Dishan Croning
- * Date: 4/6/2016
- * Time: 12:15 AM
- */
+
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+
+$userName = $_POST['usernameFormName'];
+$userComment = $_POST['commentFormName'];
+
+if($_SERVER['REQUEST_METHOD'] == "POST") {
+    echo "Name: " . $userName . " Comment: " . $userComment;
+}

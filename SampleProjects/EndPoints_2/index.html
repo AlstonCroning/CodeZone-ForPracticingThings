@@ -1,10 +1,29 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>EndPoints 2</title>
+    <link rel="stylesheet" href="Styles.css">
 </head>
+
 <body>
 
+<form method="post" action="BackEnd.php">
+
+    Name: <br/>
+    <input type="text" id="usernameFormId" name="usernameFormName"><br/>
+    Comment: <br/><textarea id="commentFormId" name="commentFormName" cols="30" rows="2" ></textarea><br/>
+    <textarea id="displayCommentFormId" name="displayCommentFormName" cols="100" rows="20" disabled></textarea><br/>
+    <button type="button" id="buttonFormId" name="buttonFormName">Post</button>
+
+</form>
+
+<p id="message"></p>
+
+
+<script src="Script.js"></script>
 </body>
+
 </html>
