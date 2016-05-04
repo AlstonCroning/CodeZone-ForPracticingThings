@@ -17,16 +17,30 @@ public class Main {
 
         //exercise 6
         int[] myArray = new int[8];
-        myArray[0] = 1;
+        myArray[0] = 3;
         myArray[1] = 1;
         myArray[2] = 1;
         myArray[3] = 1;
         myArray[4] = 1;
         myArray[5] = 1;
         myArray[6] = 1;
-        myArray[7] = 1;
+        myArray[7] = 7;
 
-        findLargestSum(myArray,2);
+        int count = 0;
+        int arrayData;
+        int arrayData2;
+
+        while(count < myArray.length) {
+            arrayData = myArray[count];
+
+            if(arrayData == (arrayData2 = myArray[++count])) {
+                System.out.println("found a match");
+            }
+            count++;
+        }
+
+
+        //findLargestSum(myArray,2);
     }
 
     //exercise 1
@@ -126,15 +140,19 @@ public class Main {
     public static int findLargestSum(int[] array, int groupSize) {
 
         int count = 0;
-        int itteration = 0;
+        int arrayData = 0;
 
-        for(int i = 0; i < array.length; i++) {
-             itteration = array[i];
-            if (itteration == array[itteration+1]) {
+        for (int i = 0; i < array.length; ) {
+            arrayData = array[i];
+
+            if(arrayData == array[i+1]) {
                 count++;
             }
+            i++;
         }
-        System.out.println(count);
+//        System.out.println(count);
+
+
 
         return 0;
     }
