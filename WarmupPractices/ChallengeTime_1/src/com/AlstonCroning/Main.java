@@ -10,7 +10,10 @@ public class Main {
         //countEvenNumbers(15);
 
         //exercise 4
-        removeDuplicatesFromArrays();
+        //removeDuplicatesFromArrays();
+
+        //exercise 5
+        printLikeNumbers();
     }
 
     //exercise 1
@@ -97,5 +100,12 @@ public class Main {
             count++;
         }
 
+    }
+
+    //exercise 5
+    public static void printLikeNumbers() {
+        for(int i = 1; i <= 5; i++) {
+            System.out.println(i + " " + i + " " + i + " " + i + " " + i);
+        }
     }
 }
