@@ -7,7 +7,10 @@ public class Main {
         //printNumbersOrFooBar();
 
         //exercise 2
-        countEvenNumbers(15);
+        //countEvenNumbers(15);
+
+        //exercise 4
+        removeDuplicatesFromArrays();
     }
 
     //exercise 1
@@ -63,5 +66,36 @@ public class Main {
             }
         }
         System.out.println(count);
+    }
+
+    //exercise 4
+    public static void removeDuplicatesFromArrays() {
+        String[] myarray = new String[6];
+        myarray[0] = "one";
+        myarray[1] = "one";
+        myarray[2] = "two";
+        myarray[3] = "three";
+        myarray[4] = "three";
+        myarray[5] = "two";
+        String tempWord = "";
+
+        //loop throughly and compare each word and remove duplicates
+        for(int i = 0; i < 6; i++) {
+            tempWord = myarray[i];//save each word
+
+            for(int k = (i+1); k < 6; k++) {
+               if( tempWord.equals(myarray[k])) {
+                   myarray[k] = "";
+               }
+            }
+        }
+
+        //print the remaining values of array to the output
+        int count = 0;
+        while (count < 6) {
+            System.out.print(myarray[count] + " ");
+            count++;
+        }
+
     }
 }
