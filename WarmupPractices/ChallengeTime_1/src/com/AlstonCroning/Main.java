@@ -13,7 +13,20 @@ public class Main {
         //removeDuplicatesFromArrays();
 
         //exercise 5
-        printLikeNumbers();
+        //printLikeNumbers();
+
+        //exercise 6
+        int[] myArray = new int[8];
+        myArray[0] = 1;
+        myArray[1] = 1;
+        myArray[2] = 1;
+        myArray[3] = 1;
+        myArray[4] = 1;
+        myArray[5] = 1;
+        myArray[6] = 1;
+        myArray[7] = 1;
+
+        findLargestSum(myArray,2);
     }
 
     //exercise 1
@@ -107,5 +120,22 @@ public class Main {
         for(int i = 1; i <= 5; i++) {
             System.out.println(i + " " + i + " " + i + " " + i + " " + i);
         }
+    }
+
+    //exercise 6
+    public static int findLargestSum(int[] array, int groupSize) {
+
+        int count = 0;
+        int itteration = 0;
+
+        for(int i = 0; i < array.length; i++) {
+             itteration = array[i];
+            if (itteration == array[itteration+1]) {
+                count++;
+            }
+        }
+        System.out.println(count);
+
+        return 0;
     }
 }
