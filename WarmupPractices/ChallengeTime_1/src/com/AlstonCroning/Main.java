@@ -3,10 +3,14 @@ package com.AlstonCroning;
 public class Main {
 
     public static void main(String[] args) {
-        printNumbersOrFooBar();//function call
+        //exercise 1
+        //printNumbersOrFooBar();
+
+        //exercise 2
+        countEvenNumbers(15);
     }
 
-    //function
+    //exercise 1
     public static void printNumbersOrFooBar () {
 
         //variables
@@ -44,5 +48,20 @@ public class Main {
                 System.out.print(i + " ");
             }
         }
+    }
+
+    //exercise 2
+    public static void countEvenNumbers(int number) {
+
+        int remainder = 0;
+        int count = 0;
+
+        for(int i = 0; i <= number; i++) {
+            remainder = i%2;
+            if(remainder == 0) {
+                count++;
+            }
+        }
+        System.out.println(count);
     }
 }
