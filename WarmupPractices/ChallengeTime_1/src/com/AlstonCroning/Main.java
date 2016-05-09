@@ -7,15 +7,19 @@ public class Main {
         //printNumbersOrFooBar();
 
         //exercise 2
-        //countEvenNumbers(15);
+        //System.out.println(countEvenNumbers(15));
+
+        //exercise 3
+        //a = 1 + 1 + 1 = 3  (min)
+        //a = 6 + 6 + 6 = 18  (max)
 
         //exercise 4
         //removeDuplicatesFromArrays();
 
         //exercise 5
-        //printLikeNumbers();
+        printLikeNumbers(5);
 
-
+/*
         //use the (group size of 2)
         int groupSize = 2;
         int[] myArray = {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7,8}; //11 entries (group size = 2)
@@ -31,6 +35,7 @@ public class Main {
         for(int i = 0; i< myArray.length;i++) {
             System.out.println(possibleSolitions[i]);
         }
+*/
 
     }
 
@@ -172,7 +177,7 @@ public class Main {
     }
 
     //exercise 2
-    public static void countEvenNumbers(int number) {
+    public static int countEvenNumbers(int number) {
 
         int remainder = 0;
         int count = 0;
@@ -183,7 +188,7 @@ public class Main {
                 count++;
             }
         }
-        System.out.println(count);
+        return count;
     }
 
     //exercise 4
@@ -217,12 +222,25 @@ public class Main {
 
     }
 
-    //exercise 5
-    public static void printLikeNumbers() {
-        for(int i = 1; i <= 5; i++) {
-            System.out.println(i + " " + i + " " + i + " " + i + " " + i);
+    //exercise 5 (additional features)
+    public static void printLikeNumbers(int controlWidthAndLength) {
+
+
+        for(int i = 1; i <= controlWidthAndLength; i++) {
+            for(int k = 1; k <= controlWidthAndLength; k++) {
+
+                System.out.print(i);
+                if(k == controlWidthAndLength) {
+                    System.out.println();
+                } else if(controlWidthAndLength >= 10 && i >= 10) {
+                    System.out.print("   ");
+                } else {
+                    System.out.print("    ");
+                }
+            }
         }
     }
+
 
 }
 
@@ -291,3 +309,11 @@ public class Main {
         }
         System.out.println(count);
         */
+
+
+//exercise 5 (previously)
+//    public static void printLikeNumbers() {
+//        for(int i = 1; i <= 5; i++) {
+//            System.out.println(i + " " + i + " " + i + " " + i + " " + i);
+//        }
+//    }
