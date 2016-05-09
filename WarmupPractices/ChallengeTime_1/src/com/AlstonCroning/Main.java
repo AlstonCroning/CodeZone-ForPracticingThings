@@ -18,15 +18,21 @@ public class Main {
 
         //use the (group size of 2)
         int groupSize = 2;
-//        int[] myArray = {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7}; //11 entries (group size = 2)
-        int[] myArray = {1, 1, 2, 4, 6, 5,1,2,5,4,1}; //test array
+        int[] myArray = {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7,8}; //11 entries (group size = 2)
+//        int[] myArray = {7, 1, 1, 6, 2, 2, 2, 5, 1, 1, 1,205,20, 1, 1, 1, 25, 50, 75, 95}; //test array
         int [] possibleSolitions = possibleSolutions(myArray,groupSize);
+        int bestSolution = bestSolution(possibleSolitions);
 
-        for(int i=0; i< myArray.length;i++) {
+
+        System.out.println("Best solution: " + bestSolution);
+
+        //test loop
+        System.out.println("Possible Solutions: ");
+        for(int i = 0; i< myArray.length;i++) {
             System.out.println(possibleSolitions[i]);
         }
-    }
 
+    }
 
     public static int[] possibleSolutions(int [] array, int groupSize) {
 
@@ -63,9 +69,45 @@ public class Main {
         }
     }
 
-    public static int bestSolution(int [] possibleSolutions) {
+    public static int bestSolution(int [] possibleSolutionsArray) {
 
-        return 0;
+        int [] bestSolutionArray = new int[possibleSolutionsArray.length];
+        int currentData = 0;
+        int previousData = 0;
+        int bestRessult = 0;
+        int saveData = 0;
+
+        for(int i=0; i < possibleSolutionsArray.length; i++) {
+            currentData = possibleSolutionsArray[i];
+
+            if(i != 0) {
+                if(currentData >= previousData) {
+
+                    if(saveData < currentData) {
+                        saveData = currentData;
+                    }
+                    else if(saveData == currentData) {
+                        saveData = currentData;
+                    }
+                }
+//                else if(currentData < previousData) {
+//                    saveData = previousData;
+//                }
+
+/*                if(currentData != previousData) {
+                    if (currentData > previousData) {
+                        saveData = currentData;
+                    } else if (currentData < previousData) {
+                        saveData = previousData;
+                    }
+                } else {
+                    saveData = currentData;
+                }*/
+            }
+            previousData = currentData;
+        }
+//        System.out.println(saveData);
+        return saveData;
     }
 
     public static int findStartingIndexOfBestSolution() {
