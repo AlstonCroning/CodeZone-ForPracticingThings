@@ -17,9 +17,9 @@ public class Main {
         //removeDuplicatesFromArrays();
 
         //exercise 5
-        printLikeNumbers(5);
+        //printLikeNumbersForGivenLength(5);
 
-/*
+
         //use the (group size of 2)
         int groupSize = 2;
         int[] myArray = {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7,8}; //11 entries (group size = 2)
@@ -35,7 +35,7 @@ public class Main {
         for(int i = 0; i< myArray.length;i++) {
             System.out.println(possibleSolitions[i]);
         }
-*/
+
 
     }
 
@@ -139,7 +139,7 @@ public class Main {
     //exercise 1
     public static void printNumbersOrFooBar () {
 
-        //variables
+        //defining variables
         int number1 = 3;
         int number2 = 5;
         int Remainder_num1 = 0;
@@ -179,34 +179,37 @@ public class Main {
     //exercise 2
     public static int countEvenNumbers(int number) {
 
-        int remainder = 0;
+        //defining variables
+        int remainder;
         int count = 0;
 
+        //itterate untill the number that was given
         for(int i = 0; i <= number; i++) {
-            remainder = i%2;
+            remainder = i%2;//save remainder of each itteration divided by 2
+
+            //if the remainder is 0 then the number is a even number
             if(remainder == 0) {
-                count++;
+                count++;//represents the number of even numbers
             }
         }
-        return count;
+        return count;//return the count
     }
 
     //exercise 4
     public static void removeDuplicatesFromArrays() {
-        String[] myarray = new String[6];
-        myarray[0] = "one";
-        myarray[1] = "one";
-        myarray[2] = "two";
-        myarray[3] = "three";
-        myarray[4] = "three";
-        myarray[5] = "two";
-        String tempWord = "";
 
-        //loop throughly and compare each word and remove duplicates
-        for(int i = 0; i < 6; i++) {
+        //defining variables
+        String[] myarray = {"one","one","two","three","three","two"};
+        String tempWord;
+
+        //loop untill the length of array
+        for(int i = 0; i < myarray.length; i++) {
             tempWord = myarray[i];//save each word
 
-            for(int k = (i+1); k < 6; k++) {
+            //loop untill length of array and compare each word and remove duplicates
+            for(int k = (i+1); k < myarray.length; k++) {
+
+                //if the current word is equals with next word replace with empty string
                if( tempWord.equals(myarray[k])) {
                    myarray[k] = "";
                }
@@ -219,22 +222,28 @@ public class Main {
             System.out.print(myarray[count] + " ");
             count++;
         }
-
     }
 
     //exercise 5 (additional features)
-    public static void printLikeNumbers(int controlWidthAndLength) {
+    public static void printLikeNumbersForGivenLength(int length) {
 
+        //loop from 1 to length given
+        for(int i = 1; i <= length; i++) {
+            //loop from 1 to length given
+            for(int k = 1; k <= length; k++) {
 
-        for(int i = 1; i <= controlWidthAndLength; i++) {
-            for(int k = 1; k <= controlWidthAndLength; k++) {
+                System.out.print(i);//print outer loop itteration value
 
-                System.out.print(i);
-                if(k == controlWidthAndLength) {
+                //line break
+                if(k == length) {
                     System.out.println();
-                } else if(controlWidthAndLength >= 10 && i >= 10) {
+                }
+                //add space for numbers larger than or equal to 10
+                else if(length >= 10 && i >= 10) {
                     System.out.print("   ");
-                } else {
+                }
+                //add space for numbers less than 10
+                else {
                     System.out.print("    ");
                 }
             }
