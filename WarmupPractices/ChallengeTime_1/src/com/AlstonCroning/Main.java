@@ -19,28 +19,27 @@ public class Main {
         //exercise 5
         //printLikeNumbersForGivenLength(5);
 
+        //exercise 6
+//        int groupSize = 3;
+//        int[] myArray = {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7,8}; //11 entries (group size = 2)
 
-        //use the (group size of 2)
+
         int groupSize = 2;
-        int[] myArray = {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7,8}; //11 entries (group size = 2)
-//        int[] myArray = {7, 1, 1, 6, 2, 2, 2, 5, 1, 1, 1,205,20, 1, 1, 1, 25, 50, 75, 95}; //test array
+        int[] myArray = {1,2,3,5,90,50,10,5,10,10,10,1}; //11 entries (group size = 2)
         int [] possibleSolitions = possibleSolutions(myArray,groupSize);
+
         int bestSolution = bestSolution(possibleSolitions);
+        System.out.println(bestSolution);
 
-
-        System.out.println("Best solution: " + bestSolution);
-
-        //test loop
-        System.out.println("Possible Solutions: ");
-        for(int i = 0; i< myArray.length;i++) {
-            System.out.println(possibleSolitions[i]);
-        }
-
+//        //test loop
+//        System.out.println("Possible Solutions: ");
+//        for(int i = 0; i< myArray.length;i++) {
+//            System.out.println(possibleSolitions[i]);
+//        }
 
     }
 
     public static int[] possibleSolutions(int [] array, int groupSize) {
-
         int arrayLength = array.length; //length of array
         int remainder = arrayLength % groupSize; //remainder for making sure if the array is dividable by the group size
         int [] ExtractedDataSum = new int[arrayLength*2]; //summed up data to be saved in this array
@@ -48,16 +47,24 @@ public class Main {
         int addedTempData = 0;//to be used for added data of each itteration (current + old data)
         int remainderOfItteration;//remainderOfItteration used to make sure if the itterator is dividable by the group size for Extracting data into an array
 
+        int temp_i = groupSize - 1;
+
         if(remainder == 0) {
 
             for(int i=0; i < arrayLength; i++) {
                 addedTempData += array[i]; //added data (current + old data)
-                remainderOfItteration = (i % groupSize);
-
-                if( remainderOfItteration != 0) {
-                    ExtractedDataSum[i] = addedTempData;//addedTempData to be inserted into a new array
-                    addedTempData = 0;//replace addedTempData with 0
-                }
+//                remainderOfItteration = (i % groupSize);
+//                if( remainderOfItteration != 0) {
+                    if (i == temp_i) {
+                        ExtractedDataSum[i] = addedTempData;//addedTempData to be inserted into a new array
+                        addedTempData = 0;//replace addedTempData with 0
+                    } else {
+                        if(i == (temp_i + groupSize)) {
+                            ExtractedDataSum[i] = addedTempData;//addedTempData to be inserted into a new array
+                            addedTempData = 0;//replace addedTempData with 0
+                            temp_i = temp_i + groupSize;
+                        }
+                    }
             }
             return ExtractedDataSum;
         } else {
@@ -121,7 +128,6 @@ public class Main {
     }
 
     public static int findLargestSum(int[] array, int groupSize) {
-
         return 0;
     }
 
