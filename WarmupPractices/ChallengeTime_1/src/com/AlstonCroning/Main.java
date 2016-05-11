@@ -24,61 +24,99 @@ public class Main {
 //        int[] myArray = {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7,8}; //11 entries (group size = 2)
 
 
-        int groupSize = 2;
-        int[] myArray = {1,2,3,5,90,50,10,5,10,10,10,1}; //11 entries (group size = 2)
+        //define variables and initialize
+        int groupSize = 3;
+        int[] myArray = {1,2,3,4,8,6,7,1,2}; //11 entries (group size = 2)
+
+        //call functions and save values
         int [] possibleSolitions = possibleSolutions(myArray,groupSize);
-
         int bestSolution = bestSolution(possibleSolitions);
-        System.out.println(bestSolution);
 
-//        //test loop
-//        System.out.println("Possible Solutions: ");
-//        for(int i = 0; i< myArray.length;i++) {
-//            System.out.println(possibleSolitions[i]);
-//        }
+        //test code
+        System.out.println("best Solution: " + bestSolution);
+        System.out.println("Possible Solutions: ");
+        for(int i = 0; i< myArray.length;i++) {
+            System.out.println(possibleSolitions[i]);
+        }
 
     }
 
     public static int[] possibleSolutions(int [] array, int groupSize) {
+
+        int extractedTempData; //current data of each index of the array
+        int addedTempData = 0;//to be used for added data of each itteration (current + old data)
         int arrayLength = array.length; //length of array
         int remainder = arrayLength % groupSize; //remainder for making sure if the array is dividable by the group size
         int [] ExtractedDataSum = new int[arrayLength*2]; //summed up data to be saved in this array
-        int extractedTempData = 0; //current data of each index of the array
-        int addedTempData = 0;//to be used for added data of each itteration (current + old data)
-        int remainderOfItteration;//remainderOfItteration used to make sure if the itterator is dividable by the group size for Extracting data into an array
+        int temp_i = groupSize - 1;//used to compare with the current itteration
 
-        int temp_i = groupSize - 1;
 
+
+//        for(int i=0;i<arrayLength;i++) {
+//            System.out.println(i);
+//            for(int k=(i+1);k < (temp_i + groupSize);k++) {
+//                break;
+//            }
+//        }
+
+
+        //Working solution
+        for(int i = 0; i < arrayLength; i++) {
+            extractedTempData = array[i];
+            for(int k = (i+1); k < arrayLength; k++) {
+                addedTempData += array[k];
+                if(k == temp_i){
+                    addedTempData += extractedTempData;
+                    ExtractedDataSum[i] = addedTempData;
+                    addedTempData = 0;
+                    temp_i++;
+                    break;
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+/*
+        //incomplete Solution
         if(remainder == 0) {
-
             for(int i=0; i < arrayLength; i++) {
                 addedTempData += array[i]; //added data (current + old data)
-//                remainderOfItteration = (i % groupSize);
-//                if( remainderOfItteration != 0) {
-                    if (i == temp_i) {
+                if (i == temp_i) {
+                    ExtractedDataSum[i] = addedTempData;//addedTempData to be inserted into a new array
+                    addedTempData = 0;//replace addedTempData with 0
+                } else {
+                    if(i == (temp_i + groupSize)) {
                         ExtractedDataSum[i] = addedTempData;//addedTempData to be inserted into a new array
                         addedTempData = 0;//replace addedTempData with 0
-                    } else {
-                        if(i == (temp_i + groupSize)) {
-                            ExtractedDataSum[i] = addedTempData;//addedTempData to be inserted into a new array
-                            addedTempData = 0;//replace addedTempData with 0
-                            temp_i = temp_i + groupSize;
-                        }
+                        temp_i = temp_i + groupSize;
                     }
-            }
-            return ExtractedDataSum;
-        } else {
-            for(int i=0; i < arrayLength; i++) {
-                extractedTempData = array[i];//current data
-                addedTempData += array[i];//added data (current + old data)
-                if(i != 0) {
-                    ExtractedDataSum[i] = addedTempData;//addedTempData to be inserted into a new array
                 }
-                //replace addedTempData with the current data so that it can be added with the new data
-                addedTempData = extractedTempData;
             }
             return ExtractedDataSum;
         }
+
+        else {
+            for(int i=0; i < arrayLength; i++) {
+                extractedTempData = array[i];//current data
+                addedTempData += array[i];//added data (current + old data)
+                if(i == temp_i) {
+                    ExtractedDataSum[i] = addedTempData;//addedTempData to be inserted into a new array
+                    addedTempData = extractedTempData;//replace addedTempData with the current data so that it can be added with the new data
+                } else {
+
+                }
+            }
+            return ExtractedDataSum;
+        }
+        */
+        return ExtractedDataSum;
     }
 
     public static int bestSolution(int [] possibleSolutionsArray) {
