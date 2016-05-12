@@ -25,19 +25,23 @@ public class Main {
 
 
         //define variables and initialize
-        int groupSize = 7;
-        int[] myArray = {1,2,3,4,5,6,7};
+        int groupSize = 4;
+        int[] myArray = {1,7,8,9,10,6,2,3,4,5};
 
         //call functions and save values
         int [] possibleSolitions = possibleSolutions(myArray,groupSize);
         int bestSolution = bestSolution(possibleSolitions);
+        int savedIndex = findStartingIndexOfBestSolution(myArray,possibleSolitions,bestSolution);
+
 
         //test code
-        System.out.println("best Solution: " + bestSolution);
+        System.out.println("best Solution: " + bestSolution + " Index: " + savedIndex);
         System.out.println("Possible Solutions: ");
         for(int i = 0; i< myArray.length;i++) {
             System.out.println(possibleSolitions[i]);
         }
+
+
     }
 
     public static int[] possibleSolutions(int [] array, int groupSize) {
@@ -91,9 +95,17 @@ public class Main {
         return saveData;
     }
 
-    public static int findStartingIndexOfBestSolution() {
+    public static int findStartingIndexOfBestSolution(int [] array, int [] possibleSolutions, int bestSolution) {
 
-        return 0;
+        int arrayLength = array.length;
+        int savedIndex = 0;
+
+        for(int i = 0; i < arrayLength; i++) {
+            if(possibleSolutions[i] == bestSolution) {
+                savedIndex = i;
+            }
+        }
+        return savedIndex;
     }
 
     public static int findLargestSum(int[] array, int groupSize) {
