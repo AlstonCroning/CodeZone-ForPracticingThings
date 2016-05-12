@@ -20,129 +20,26 @@ public class Main {
         //printLikeNumbersForGivenLength(5);
 
         //exercise 6
-//        int groupSize = 3;
-//        int[] myArray = {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7,8}; //11 entries (group size = 2)
-//        int[] myArray = {1,7,8,9,10,6,2,3,4,5,99};
+        int groupSize = 4;//set the group size here
+        int[] myArray = {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7};//array to be tested (array under test)
 
-
-        //define variables and initialize
-
-        //exercise 6
-        int groupSize = 11;
-        int[] myArray = {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7};
+        //obtain the largestSum and (starting index/position) for (array under test)
         int [] theLargestSumOfConsecutiveEntries = findTheLargestSumOfConsecutiveEntries(myArray,groupSize);
-        int largestSumAndPosition;
+        int largestSumAndPosition;//extract both largestSum and position of the (array under test)
 
+        //loop from (0 - 2)
         for(int i=0; i < 2; i++) {
-            largestSumAndPosition = theLargestSumOfConsecutiveEntries[i];
+            largestSumAndPosition = theLargestSumOfConsecutiveEntries[i];//extract each data
+            //index 0 data of theLargestSumOfConsecutiveEntries array has the largest sum
             if(i == 0) {
-                System.out.println("Largest Sum: " +largestSumAndPosition);
-            } else if (i == 1){
-                System.out.println("Position: " + largestSumAndPosition);
+                System.out.println("Largest Sum: " +largestSumAndPosition);//display the largestSum
+            }
+            //index 1 data of theLargestSumOfConsecutiveEntries array has the position/starting index
+            else if (i == 1){
+                System.out.println("Position: " + largestSumAndPosition);//display the position
             }
         }
     }
-
-    //exercise 6
-    private static int[] possibleSolutions(int [] array, int groupSize) {
-        int extractedTempData; //current data of each index of the array
-        int addedTempData = 0;//to be used for added data of each itteration (current + old data)
-        int arrayLength = array.length; //length of array
-        int [] ExtractedDataSum = new int[arrayLength*2]; //summed up data to be saved in this array
-        int temp_i = groupSize - 1;//useful for comparing current itteration and grouping each groups
-
-        //loop from (0 - length of the array)
-        for(int i = 0; i < arrayLength; i++) {
-            extractedTempData = array[i];//extract the data temporrilly
-
-            //loop from ( (i+1) to (length of array) )
-            for(int k = (i+1); k < arrayLength; k++) {
-                addedTempData += array[k];//add data until the end of each group
-
-                //condition true if the end of each group has reached
-                if(k == temp_i){
-                    addedTempData += extractedTempData;//add the total summed each group
-                    ExtractedDataSum[i] = addedTempData;//save the each possibleSolution in the new array
-                    addedTempData = 0;//reset addedTempData variable
-                    temp_i++;//end of next group's itterator should be 1 greater than the previous
-                    break;//we're done collecting possible solution for each group so 'break'
-                }
-            }
-        }
-        return ExtractedDataSum;//return the possibleSolutions
-    }
-    private static int bestSolution(int [] possibleSolutionsArray) {
-        //defining variables and/or initialize
-        int currentData;//used to save currentData
-        int previousData = 0;//used to store previousData
-        int savedData = 0;//used to storeData until the bestSolution is found
-
-        //loop from ( 0 - length of possibleSolutionsArray)
-        for(int i=0; i < possibleSolutionsArray.length; i++) {
-            currentData = possibleSolutionsArray[i]; //current data of each index of the array
-
-            //Save the bestSolution if the groupSize is equal to the length of the original array
-            if((possibleSolutionsArray[i] != 0) && (i == 0)) {
-                savedData = currentData;//save the bestSolution
-            }
-            //Save the bestSolution if the group size is less than the length of the actual array
-            else if(i != 0) {
-                //if the currentData is greater than or equal to previous data
-                if(currentData >= previousData) {
-                    //if the savedData is less than the currentData
-                    if(savedData < currentData) {
-                        savedData = currentData;//save the currentData
-                    }
-                    //if the savedData is equals to currentData
-                    else if(savedData == currentData) {
-                        savedData = currentData;//saved the currentData
-                    }
-                }
-            }
-            //replace the previousData with currentData
-            previousData = currentData;//because currentData becomes previous data in the next itteration
-        }
-        return savedData;//return the bestSolution
-    }
-    private static int findStartingIndexOfBestSolution(int [] array, int [] possibleSolutions, int bestSolution) {
-        //define variables and/ initialize
-        int arrayLength = array.length;//length of the original array
-        int savedIndex = 0;//used to store the position/index of the largest Sum
-
-        //loop from ( 0 - length of the original array)
-        for(int i = 0; i < arrayLength; i++) {
-            //compare each data of possibleSolutions array with the bestSolution
-            if(possibleSolutions[i] == bestSolution) {
-                //if both bestSolution matched with possibleSolution's data then save the current index
-                savedIndex = i;
-            }
-        }
-        return savedIndex;//return the starting index of best solution
-    }
-    private static int [] findTheLargestSumOfConsecutiveEntries(int[] array, int groupSize) {
-        //define variables and/or initialize and method calls
-        int [] largestSumAndIndex = new int[2];//used to store largestSum and starting index
-        int [] possibleSolutions = possibleSolutions(array,groupSize);//obtain the possibleSolutions
-        int largestSum = bestSolution(possibleSolutions);//obtain the bestSolution
-        int startingIndex = findStartingIndexOfBestSolution(array,possibleSolutions,largestSum);//obtain the starting index
-
-        //store largesSum and Starting index in the new Array
-        largestSumAndIndex[0] = largestSum;
-        largestSumAndIndex[1] = startingIndex;
-
-        return largestSumAndIndex;//return largestSum and starting Index
-    }
-
-
-
-
-
-
-
-
-
-
-
 
     //exercise 1
     public static void printNumbersOrFooBar () {
@@ -258,74 +155,162 @@ public class Main {
         }
     }
 
+    //exercise 6
+    private static int[] possibleSolutions(int [] array, int groupSize) {
+        int extractedTempData; //current data of each index of the array
+        int addedTempData = 0;//to be used for added data of each itteration (current + old data)
+        int arrayLength = array.length; //length of array
+        int [] ExtractedDataSum = new int[arrayLength*2]; //summed up data to be saved in this array
+        int temp_i = groupSize - 1;//useful for comparing current itteration and grouping each groups
+
+        //loop from (0 - length of the array)
+        for(int i = 0; i < arrayLength; i++) {
+            extractedTempData = array[i];//extract the data temporrilly
+
+            //loop from ( (i+1) to (length of array) )
+            for(int k = (i+1); k < arrayLength; k++) {
+                addedTempData += array[k];//add data until the end of each group
+
+                //condition true if the end of each group has reached
+                if(k == temp_i){
+                    addedTempData += extractedTempData;//add the total summed each group
+                    ExtractedDataSum[i] = addedTempData;//save the each possibleSolution in the new array
+                    addedTempData = 0;//reset addedTempData variable
+                    temp_i++;//end of next group's itterator should be 1 greater than the previous
+                    break;//we're done collecting possible solution for each group so 'break'
+                }
+            }
+        }
+        return ExtractedDataSum;//return the possibleSolutions
+    }
+    private static int bestSolution(int [] possibleSolutionsArray) {
+        //defining variables and/or initialize
+        int currentData;//used to save currentData
+        int previousData = 0;//used to store previousData
+        int savedData = 0;//used to storeData until the bestSolution is found
+
+        //loop from ( 0 - length of possibleSolutionsArray)
+        for(int i=0; i < possibleSolutionsArray.length; i++) {
+            currentData = possibleSolutionsArray[i]; //current data of each index of the array
+
+            //Save the bestSolution if the groupSize is equal to the length of the original array
+            if((possibleSolutionsArray[i] != 0) && (i == 0)) {
+                savedData = currentData;//save the bestSolution
+            }
+            //Save the bestSolution if the group size is less than the length of the actual array
+            else if(i != 0) {
+                //if the currentData is greater than or equal to previous data
+                if(currentData >= previousData) {
+                    //if the savedData is less than the currentData
+                    if(savedData < currentData) {
+                        savedData = currentData;//save the currentData
+                    }
+                    //if the savedData is equals to currentData
+                    else if(savedData == currentData) {
+                        savedData = currentData;//saved the currentData
+                    }
+                }
+            }
+            //replace the previousData with currentData
+            previousData = currentData;//because currentData becomes previous data in the next itteration
+        }
+        return savedData;//return the bestSolution
+    }
+    private static int findStartingIndexOfBestSolution(int [] array, int [] possibleSolutions, int bestSolution) {
+        //define variables and/ initialize
+        int arrayLength = array.length;//length of the original array
+        int savedIndex = 0;//used to store the position/index of the largest Sum
+
+        //loop from ( 0 - length of the original array)
+        for(int i = 0; i < arrayLength; i++) {
+            //compare each data of possibleSolutions array with the bestSolution
+            if(possibleSolutions[i] == bestSolution) {
+                //if both bestSolution matched with possibleSolution's data then save the current index
+                savedIndex = i;
+            }
+        }
+        return savedIndex;//return the starting index of best solution
+    }
+    private static int [] findTheLargestSumOfConsecutiveEntries(int[] array, int groupSize) {
+        //define variables and/or initialize and method calls
+        int [] largestSumAndIndex = new int[2];//used to store largestSum and starting index
+        int [] possibleSolutions = possibleSolutions(array,groupSize);//obtain the possibleSolutions
+        int largestSum = bestSolution(possibleSolutions);//obtain the bestSolution
+        int startingIndex = findStartingIndexOfBestSolution(array,possibleSolutions,largestSum);//obtain the starting index
+
+        //store largesSum and Starting index in the new Array
+        largestSumAndIndex[0] = largestSum;
+        largestSumAndIndex[1] = startingIndex;
+
+        return largestSumAndIndex;//return largestSum and starting Index
+    }
 
 }
 
 
+//resources and/or old code
 /*
-    def largestSumOfConsecutiveEntries(inputList: List[Int], groupingSize: Int): Option[Solution] = {
+def largestSumOfConsecutiveEntries(inputList: List[Int], groupingSize: Int): Option[Solution] = {
 
-        val potentialSolutions = permute(inputList, groupingSize)
-        val bestSolution = findSolutionWithHighestSum(potentialSolutions)
+    val potentialSolutions = permute(inputList, groupingSize)
+    val bestSolution = findSolutionWithHighestSum(potentialSolutions)
 
-        if (bestSolution.isEmpty) {
-            None
-        } else {
-            val startingIndex = findStartingIndexOfBestSolution(inputList, bestSolution)
-            Some(Solution(startingIndex, bestSolution, bestSolution.sum))
-        }
+    if (bestSolution.isEmpty) {
+        None
+    } else {
+        val startingIndex = findStartingIndexOfBestSolution(inputList, bestSolution)
+        Some(Solution(startingIndex, bestSolution, bestSolution.sum))
     }
+}
 
 
 
-        def potentialSolution(inputList: List[Int], groupingSize: Int): List[Int] =
-      if (inputList.size < groupingSize) List.empty
-      else inputList.take(groupingSize)
+    def potentialSolution(inputList: List[Int], groupingSize: Int): List[Int] =
+  if (inputList.size < groupingSize) List.empty
+  else inputList.take(groupingSize)
 
-    def permute(inputList: List[Int], groupingSize: Int): Set[List[Int]] =
-      inputList.indices.foldLeft(Set.empty[List[Int]]) {
-        (acc: Set[List[Int]], elem: Int) => acc + potentialSolution(inputList.drop(elem), groupingSize)
-      } filter(_.nonEmpty)
+def permute(inputList: List[Int], groupingSize: Int): Set[List[Int]] =
+  inputList.indices.foldLeft(Set.empty[List[Int]]) {
+    (acc: Set[List[Int]], elem: Int) => acc + potentialSolution(inputList.drop(elem), groupingSize)
+  } filter(_.nonEmpty)
 
 
-    def findSolutionWithHighestSum(xs: Set[List[Int]]): List[Int] =
-      xs.reduce((nextSet, maxSet) => if (nextSet.sum > maxSet.sum) nextSet else maxSet)
+def findSolutionWithHighestSum(xs: Set[List[Int]]): List[Int] =
+  xs.reduce((nextSet, maxSet) => if (nextSet.sum > maxSet.sum) nextSet else maxSet)
 
-    def findStartingIndexOfBestSolution(originalList: List[Int], bestSolution: List[Int]): Int =
-      originalList.indexOfSlice(bestSolution)
+def findStartingIndexOfBestSolution(originalList: List[Int], bestSolution: List[Int]): Int =
+  originalList.indexOfSlice(bestSolution)
 */
 
+/*
+//old solution : not valid
+int count = 0;
+int arrayData;
+int arrayData2;
 
+while(count < myArray.length) {
+    arrayData = myArray[count];
 
-        /*
-        //old solution : not valid
-        int count = 0;
-        int arrayData;
-        int arrayData2;
+    if(arrayData == (arrayData2 = myArray[++count])) {
+        System.out.println("found a match");
+    }
+    count++;
+}
 
-        while(count < myArray.length) {
-            arrayData = myArray[count];
+//old solution 2 (not valid)
+int count = 0;
+int arrayData = 0;
 
-            if(arrayData == (arrayData2 = myArray[++count])) {
-                System.out.println("found a match");
-            }
-            count++;
-        }
+for (int i = 0; i < array.length; ) {
+    arrayData = array[i];
 
-        //old solution 2 (not valid)
-        int count = 0;
-        int arrayData = 0;
-
-        for (int i = 0; i < array.length; ) {
-            arrayData = array[i];
-
-            if(arrayData == array[i+1]) {
-                count++;
-            }
-            i++;
-        }
-        System.out.println(count);
-        */
+    if(arrayData == array[i+1]) {
+        count++;
+    }
+    i++;
+}
+System.out.println(count);
+*/
 
 
 //exercise 5 (previously)
@@ -369,5 +354,3 @@ else {
     return ExtractedDataSum;
 }
 */
-
-
