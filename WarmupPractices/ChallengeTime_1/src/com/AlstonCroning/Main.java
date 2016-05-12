@@ -22,29 +22,28 @@ public class Main {
         //exercise 6
 //        int groupSize = 3;
 //        int[] myArray = {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7,8}; //11 entries (group size = 2)
+//        int[] myArray = {1,7,8,9,10,6,2,3,4,5,99};
 
 
         //define variables and initialize
-        int groupSize = 4;
-        int[] myArray = {1,7,8,9,10,6,2,3,4,5};
 
-        //call functions and save values
-        int [] possibleSolitions = possibleSolutions(myArray,groupSize);
-        int bestSolution = bestSolution(possibleSolitions);
-        int savedIndex = findStartingIndexOfBestSolution(myArray,possibleSolitions,bestSolution);
+        //exercise 6
+        int groupSize = 3;
+        int[] myArray = {1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7};
+        int [] theLargestSumOfConsecutiveEntries = findTheLargestSumOfConsecutiveEntries(myArray,groupSize);
+        int largestSumAndPosition;
 
-
-        //test code
-        System.out.println("best Solution: " + bestSolution + " Index: " + savedIndex);
-        System.out.println("Possible Solutions: ");
-        for(int i = 0; i< myArray.length;i++) {
-            System.out.println(possibleSolitions[i]);
+        for(int i=0; i < 2; i++) {
+            largestSumAndPosition = theLargestSumOfConsecutiveEntries[i];
+            if(i == 0) {
+                System.out.println("Largest Sum: " +largestSumAndPosition);
+            } else if (i == 1){
+                System.out.println("Position: " + largestSumAndPosition);
+            }
         }
-
-
     }
 
-    public static int[] possibleSolutions(int [] array, int groupSize) {
+    private static int[] possibleSolutions(int [] array, int groupSize) {
 
         int extractedTempData; //current data of each index of the array
         int addedTempData = 0;//to be used for added data of each itteration (current + old data)
@@ -68,8 +67,7 @@ public class Main {
         }
         return ExtractedDataSum;
     }
-
-    public static int bestSolution(int [] possibleSolutionsArray) {
+    private static int bestSolution(int [] possibleSolutionsArray) {
         int currentData;
         int previousData = 0;
         int saveData = 0;
@@ -94,8 +92,7 @@ public class Main {
         }
         return saveData;
     }
-
-    public static int findStartingIndexOfBestSolution(int [] array, int [] possibleSolutions, int bestSolution) {
+    private static int findStartingIndexOfBestSolution(int [] array, int [] possibleSolutions, int bestSolution) {
 
         int arrayLength = array.length;
         int savedIndex = 0;
@@ -107,9 +104,16 @@ public class Main {
         }
         return savedIndex;
     }
+    private static int [] findTheLargestSumOfConsecutiveEntries(int[] array, int groupSize) {
+        int [] largestSumAndIndex = new int[2];
+        int [] possibleSolutions = possibleSolutions(array,groupSize);
+        int largestSum = bestSolution(possibleSolutions);
+        int savedIndex = findStartingIndexOfBestSolution(array,possibleSolutions,largestSum);
 
-    public static int findLargestSum(int[] array, int groupSize) {
-        return 0;
+        largestSumAndIndex[0] = largestSum;
+        largestSumAndIndex[1] = savedIndex;
+
+        return largestSumAndIndex;
     }
 
 
@@ -129,8 +133,8 @@ public class Main {
         //defining variables
         int number1 = 3;
         int number2 = 5;
-        int Remainder_num1 = 0;
-        int Remainder_num2 = 0;
+        int Remainder_num1;
+        int Remainder_num2;
 
         //Loop from( 1 to 100)
         for (int i = 1; i <= 100; i++) {
