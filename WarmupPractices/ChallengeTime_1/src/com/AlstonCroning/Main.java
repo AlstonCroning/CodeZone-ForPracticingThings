@@ -27,10 +27,9 @@ public class Main {
         int [] theLargestSumOfConsecutiveEntries = findTheLargestSumOfConsecutiveEntries(myArray,groupSize);
         int largestSumAndPosition;//extract both largestSum and position of the (array under test)
 
-        //loop from (0 - 2)
         for(int i=0; i < 2; i++) {
             largestSumAndPosition = theLargestSumOfConsecutiveEntries[i];//extract each data
-            //index 0 data of theLargestSumOfConsecutiveEntries array has the largest sum
+            //index 0th data of theLargestSumOfConsecutiveEntries array has the largest sum
             if(i == 0) {
                 System.out.println("Largest Sum: " +largestSumAndPosition);//display the largestSum
             }
@@ -160,10 +159,9 @@ public class Main {
         int extractedTempData; //current data of each index of the array
         int addedTempData = 0;//to be used for added data of each itteration (current + old data)
         int arrayLength = array.length; //length of array
-        int [] ExtractedDataSum = new int[arrayLength*2]; //summed up data to be saved in this array
+        int [] extractedDataSum = new int[arrayLength*2]; //summed up data to be saved in this array
         int temp_i = groupSize - 1;//useful for comparing current itteration and grouping each groups
 
-        //loop from (0 - length of the array)
         for(int i = 0; i < arrayLength; i++) {
             extractedTempData = array[i];//extract the data temporrilly
 
@@ -174,14 +172,14 @@ public class Main {
                 //condition true if the end of each group has reached
                 if(k == temp_i){
                     addedTempData += extractedTempData;//add the total summed each group
-                    ExtractedDataSum[i] = addedTempData;//save the each possibleSolution in the new array
+                    extractedDataSum[i] = addedTempData;//save the each possibleSolution in the new array
                     addedTempData = 0;//reset addedTempData variable
                     temp_i++;//end of next group's itterator should be 1 greater than the previous
                     break;//we're done collecting possible solution for each group so 'break'
                 }
             }
         }
-        return ExtractedDataSum;//return the possibleSolutions
+        return extractedDataSum;//return the possibleSolutions
     }
     private static int bestSolution(int [] possibleSolutionsArray) {
         //defining variables and/or initialize
@@ -244,7 +242,6 @@ public class Main {
 
         return largestSumAndIndex;//return largestSum and starting Index
     }
-
 }
 
 
