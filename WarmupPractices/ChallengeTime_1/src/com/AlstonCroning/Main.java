@@ -49,21 +49,17 @@ public class Main {
         int Remainder_num1;
         int Remainder_num2;
 
-        //Loop from( 1 to 100)
         for (int i = 1; i <= 100; i++) {
-
             //save the remainder of each number
             Remainder_num1 = i%number1;
             Remainder_num2 = i%number2;
 
-            //if either one of the remainders are '0' this condition is true
             if(Remainder_num1 == 0 || Remainder_num2 == 0) {
-
-                //print 'FooBar' if both remainders are the '0'
+                //prints FooBar
                 if(Remainder_num1 == 0 && Remainder_num2 == 0) {
                     System.out.print("FooBar ");
                 }
-                //print 'Foo' or 'Bar'
+                //prints 'Foo' or 'Bar'
                 else {
                     if (Remainder_num1 == 0) {
                         System.out.print("Foo ");
@@ -87,33 +83,29 @@ public class Main {
         int remainder;
         int count = 0;
 
-        //itterate untill the number that was given
         for(int i = 0; i <= number; i++) {
-            remainder = i%2;//save remainder of each itteration divided by 2
+            remainder = i%2;//save remainder for comparison
 
             //if the remainder is 0 then the number is a even number
             if(remainder == 0) {
                 count++;//represents the number of even numbers
             }
         }
-        return count;//return the count
+        return count;
     }
 
     //exercise 4
     public static void removeDuplicatesFromArrays() {
 
-        //defining variables
+        //defining variables and/or initializing
         String[] myarray = {"one","one","two","three","three","two"};
-        String tempWord;
+        String tempWord;//used to store current data off array
+        int count = 0;//used for while loop
 
-        //loop untill the length of array
         for(int i = 0; i < myarray.length; i++) {
             tempWord = myarray[i];//save each word
-
-            //loop untill length of array and compare each word and remove duplicates
             for(int k = (i+1); k < myarray.length; k++) {
-
-                //if the current word is equals with next word replace with empty string
+                //if the current word is equals with next word then replace with empty string
                if( tempWord.equals(myarray[k])) {
                    myarray[k] = "";
                }
@@ -121,7 +113,6 @@ public class Main {
         }
 
         //print the remaining values of array to the output
-        int count = 0;
         while (count < 6) {
             System.out.print(myarray[count] + " ");
             count++;
@@ -131,22 +122,17 @@ public class Main {
     //exercise 5 (additional features)
     public static void printLikeNumbersForGivenLength(int length) {
 
-        //loop from 1 to length given
         for(int i = 1; i <= length; i++) {
-            //loop from 1 to length given
             for(int k = 1; k <= length; k++) {
+                System.out.print(i);//print each iteration number of the outer loop
 
-                System.out.print(i);//print outer loop itteration value
-
-                //line break
+                //displaying the output with clarity
                 if(k == length) {
                     System.out.println();
                 }
-                //add space for numbers larger than or equal to 10
                 else if(length >= 10 && i >= 10) {
                     System.out.print("   ");
                 }
-                //add space for numbers less than 10
                 else {
                     System.out.print("    ");
                 }
@@ -157,29 +143,28 @@ public class Main {
     //exercise 6
     private static int[] possibleSolutions(int [] array, int groupSize) {
         int extractedTempData; //current data of each index of the array
-        int addedTempData = 0;//to be used for added data of each itteration (current + old data)
+        int addedTempData = 0;//to be used for added data of each iteration (current + old data)
         int arrayLength = array.length; //length of array
         int [] extractedDataSum = new int[arrayLength*2]; //summed up data to be saved in this array
-        int temp_i = groupSize - 1;//useful for comparing current itteration and grouping each groups
+        int temp_i = groupSize - 1;//useful for comparing current iteration and grouping each groups
 
         for(int i = 0; i < arrayLength; i++) {
-            extractedTempData = array[i];//extract the data temporrilly
+            extractedTempData = array[i];//extract the data temporily
 
-            //loop from ( (i+1) to (length of array) )
             for(int k = (i+1); k < arrayLength; k++) {
                 addedTempData += array[k];//add data until the end of each group
 
                 //condition true if the end of each group has reached
                 if(k == temp_i){
-                    addedTempData += extractedTempData;//add the total summed each group
+                    addedTempData += extractedTempData;//add the total summed data of each group
                     extractedDataSum[i] = addedTempData;//save the each possibleSolution in the new array
-                    addedTempData = 0;//reset addedTempData variable
-                    temp_i++;//end of next group's itterator should be 1 greater than the previous
-                    break;//we're done collecting possible solution for each group so 'break'
+                    addedTempData = 0;
+                    temp_i++;//end of next group's iterator should be 1 greater than the previous
+                    break;
                 }
             }
         }
-        return extractedDataSum;//return the possibleSolutions
+        return extractedDataSum;
     }
     private static int bestSolution(int [] possibleSolutionsArray) {
         //defining variables and/or initialize
@@ -187,32 +172,27 @@ public class Main {
         int previousData = 0;//used to store previousData
         int savedData = 0;//used to storeData until the bestSolution is found
 
-        //loop from ( 0 - length of possibleSolutionsArray)
         for(int i=0; i < possibleSolutionsArray.length; i++) {
             currentData = possibleSolutionsArray[i]; //current data of each index of the array
 
             //Save the bestSolution if the groupSize is equal to the length of the original array
             if((possibleSolutionsArray[i] != 0) && (i == 0)) {
-                savedData = currentData;//save the bestSolution
+                savedData = currentData;
             }
             //Save the bestSolution if the group size is less than the length of the actual array
             else if(i != 0) {
-                //if the currentData is greater than or equal to previous data
                 if(currentData >= previousData) {
-                    //if the savedData is less than the currentData
                     if(savedData < currentData) {
-                        savedData = currentData;//save the currentData
+                        savedData = currentData;
                     }
-                    //if the savedData is equals to currentData
                     else if(savedData == currentData) {
-                        savedData = currentData;//saved the currentData
+                        savedData = currentData;
                     }
                 }
             }
-            //replace the previousData with currentData
-            previousData = currentData;//because currentData becomes previous data in the next itteration
+            previousData = currentData;//currentData becomes previous data in the next iteration
         }
-        return savedData;//return the bestSolution
+        return savedData;
     }
     private static int findStartingIndexOfBestSolution(int [] array, int [] possibleSolutions, int bestSolution) {
         //define variables and/ initialize
@@ -236,11 +216,11 @@ public class Main {
         int largestSum = bestSolution(possibleSolutions);//obtain the bestSolution
         int startingIndex = findStartingIndexOfBestSolution(array,possibleSolutions,largestSum);//obtain the starting index
 
-        //store largesSum and Starting index in the new Array
+        //store largestSum and Starting index in the new Array
         largestSumAndIndex[0] = largestSum;
         largestSumAndIndex[1] = startingIndex;
 
-        return largestSumAndIndex;//return largestSum and starting Index
+        return largestSumAndIndex;
     }
 }
 
