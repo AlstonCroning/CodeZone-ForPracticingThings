@@ -16,6 +16,5 @@ public class Main {
         baseClass.findTheLargestSumOfConsecutiveEntries();
         System.out.println("Best Solution: " + baseClass.findTheLargestSumOfConsecutiveEntries().getLargestsum());
         System.out.println("Starting Index: " + baseClass.findTheLargestSumOfConsecutiveEntries().getStartingIndex());
-
     }
 }
